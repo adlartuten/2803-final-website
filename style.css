@@ -1,0 +1,76 @@
+#navigation {
+    list-style-type: none;
+    padding: 5px;
+    margin: 0;
+    position: fixed;
+    width: 100vw;
+    background-color: gray;
+    text-align: center;
+}
+
+#navigation > li {
+    display: inline-block;
+    margin-right: 50px;
+    font-size: 1.1em;
+}
+
+body {
+    font-family: Helvetica Neue, Helvetica, Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: grid;
+    height: 150vh;
+    padding-top: 25px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 0.4fr 1fr;
+    grid-template-areas: "title title title" "content1 content2 content3";
+}
+
+#title {
+    grid-area: title;
+    background-color: beige;
+}
+
+#title > h1 {
+    margin: 20px;
+}
+
+#content1 {
+    grid-area: content1;
+    background-color: papayawhip;
+}
+
+#content2 {
+    grid-area: content2;
+    background-color: peachpuff;
+}
+
+#content3 {
+    grid-area: content3;
+    background-color: azure;
+}
+
+.signup {
+    height: 100vh;
+    padding-top: 20px;
+    background-color: beige;
+    padding-left: 20px;
+}
+
+input[type=text] {
+    width: 400px;
+    padding: 12px 20px;
+    margin: 8px -0px;
+    box-sizing: border-box;
+}
+
+@media only screen and (max-width: 850px) {
+    .container{
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.2fr 0.4fr 0.4fr 0.4fr;
+        grid-template-areas: "title" "content1" "content2" "content3";
+    }
+}
