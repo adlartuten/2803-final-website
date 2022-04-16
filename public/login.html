@@ -19,13 +19,14 @@
       </header>
       <div class="signup">
           <h1> Welcome Back!</h1>
-          <form>
+          <form method="POST" action="/attempt_login">
               <label for="username">Username:</label><br>
               <input type="text" id="username" name="username"><br>
               <label for="password">Password:</label><br>
               <input type="text" id="password" name="password"><br>
-              <input type="submit" value="Login">
+              <input id="login" type="submit" value="Login">
           </form>
+          <h3 id="message">hello</h3>
       </div>
   </body>
 </html>
