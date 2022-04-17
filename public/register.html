@@ -6,14 +6,15 @@
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>A Website</title>
+    <script src="register.js" defer></script>
   </head>
   <body>
       <header>
           <nav>
               <ul id="navigation">
-                  <li><a href="index.html">Home</a></li>
-                  <li><a href="login.html">Login</a></li>
-                  <li><a href="register.html">Sign Up</a></li>
+                  <li><a href="main">Home</a></li>
+                  <li><a href="login">Login</a></li>
+                  <li><a href="register">Sign Up</a></li>
               </ul>
           </nav>
       </header>
@@ -26,7 +27,8 @@
               <input type="text" id="password" name="password"><br>
               <label for="password2">Confirm Password:</label><br>
               <input type="text" id="password2" name="password2"><br>
-              <input type="submit" value="Sign Up">
+              <input id="signupButton" type="submit" value="Sign Up">
+              <p hidden id="status"></p>
           </form>
       </div>
   </body>

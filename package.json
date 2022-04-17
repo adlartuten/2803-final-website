@@ -3,5 +3,23 @@
     "bcryptjs": "^2.4.3",
     "express": "^4.17.3",
     "mysql2": "^2.3.3"
-  }
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "2803-final-website",
+  "description": "final project for CS 2803 DWD",
+  "version": "1.0.0",
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adlartuten/2803-final-website.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adlartuten/2803-final-website/issues"
+  },
+  "homepage": "https://github.com/adlartuten/2803-final-website#readme"
 }
