@@ -21,8 +21,9 @@ create table users(username varchar(64) primary key not null, password varchar(6
 const conn = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "buzzbuzz123",
-    database: "cs2803"
+    port: "3306",
+    password: "Mateo2404"
+    
 })
 conn.connect(function(err) { // establishes connection
     if (err) {
@@ -34,13 +35,16 @@ conn.connect(function(err) { // establishes connection
 
 // create an instance of express web server
 const app = express();
-// directs express to use index.html file
 app.use(express.static("public"));
 
-// route for the home page
-app.get("/main", function(req, res) {
-    res.sendFile(__dirname + "/public/" + "index.html");
+
+// route for the home page **
+app.get("/home", function(req, res) {
+    res.sendFile(__dirname + "/public/" + "home.html");
 });
+
+//route for js home
+
 
 // route for the register page
 app.get("/register", function(req, res) {

@@ -1,7 +1,11 @@
 {
   "dependencies": {
+    "axios": "^0.26.1",
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
+    "ejs": "^3.1.6",
     "express": "^4.17.3",
+    "jsdom": "^19.0.0",
     "mysql2": "^2.3.3"
   },
   "scripts": {
@@ -11,7 +15,6 @@
   "description": "final project for CS 2803 DWD",
   "version": "1.0.0",
   "main": "server.js",
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/adlartuten/2803-final-website.git"
