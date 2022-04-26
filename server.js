@@ -4,6 +4,12 @@ const res = require("express/lib/response");
 const {json} = require("express/lib/response");
 const bcrypt = require("bcryptjs");
 const mysql = require("mysql2");
+var request = require('request');
+
+const axios = require('axios');
+const { Server } = require("http");
+
+
 
 const costFactor = 11; // for bcrypt to encrypt passwords
 let authenticated = false; // status if user is logged in
@@ -33,9 +39,17 @@ conn.connect(function(err) { // establishes connection
     }
 });
 
+
+
+
+
 // create an instance of express web server
 const app = express();
 app.use(express.static("public"));
+
+var http = require("http").createServer(app);
+
+
 
 
 // route for the home page **
@@ -55,6 +69,29 @@ app.get("/register", function(req, res) {
 app.get("/login", function(req, res) {
     res.sendFile(__dirname + "/public/" + "login.html");
 });
+
+//route for buy page
+app.get("/buy", function(req, res) {
+    res.sendFile(__dirname + "/public/" + "buy.html")
+})
+
+// route for the conversation
+
+const io = require('socket.io')(http);
+
+app.get("/conversation", function(req, res) {
+    res.sendFile(__dirname + "/public/" + "conversation.html");
+});
+
+
+io.on('connection', (socket) => {
+  socket.on('chat message', msg => {
+    io.emit('chat message', msg);
+  });
+});
+
+
+
 
 // tells express to parse JSON data in POST requests
 app.use(express.urlencoded({extended: false}));
@@ -102,7 +139,36 @@ app.post("/attempt_login", function(req, res){
     });
 });
 
+//api implementation
+app.get('/convert', (req,res) => {
+
+    const options = {
+        method: 'GET',
+        url: 'https://alpha-vantage.p.rapidapi.com/query',
+        params: {function: 'TIME_SERIES_WEEKLY', symbol: 'AAPL' , datatype: 'json'},
+        headers: {
+          'X-RapidAPI-Host': 'alpha-vantage.p.rapidapi.com',
+          'X-RapidAPI-Key': '46696ad4camshc8033d999dc306cp1a477bjsn517c39425609'
+        }
+      };
+      
+      axios.request(options).then(function (response) {
+          res.json(response.data['Weekly Time Series']['2022-04-22']);
+      }).catch(function (error) {
+          console.error(error);
+      });
+    
+});
+
+//conversation 
+
+
+
+
+    
+  
+
 // starts the express web server
-app.listen(3000, function() {
+http.listen(3000, function() {
     console.log("Listening on port 3000...");
 });
