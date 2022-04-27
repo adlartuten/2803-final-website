@@ -27,5 +27,6 @@
   "bugs": {
     "url": "https://github.com/adlartuten/2803-final-website/issues"
   },
-  "homepage": "https://github.com/adlartuten/2803-final-website#readme"
+  "homepage": "https://github.com/adlartuten/2803-final-website#readme",
+  "devDependencies": {}
 }
