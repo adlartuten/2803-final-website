@@ -22,6 +22,10 @@ function login(event) {
 function responseHandler() {
     message.style.display = "block";
     message.innerText = this.response.message; // sets the status text accordingly
+    if (this.response.message == "Successfully logged in!") {
+        authenticated = true;
+        window.location.href = "home.html";
+    }
 }
 
 // add the event listener to the login button

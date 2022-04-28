@@ -8,6 +8,7 @@ var request = require('request');
 
 const axios = require('axios');
 const { Server } = require("http");
+const { application } = require("express");
 
 
 
@@ -27,8 +28,9 @@ create table users(username varchar(64) primary key not null, password varchar(6
 const conn = mysql.createConnection({
     host: "localhost",
     user: "root",
-    port: "3306",
-    password: "Mateo2404"
+    //port: "3306",
+    password: "buzzbuzz123",
+    database: "cs2803"
     
 })
 conn.connect(function(err) { // establishes connection
@@ -40,24 +42,17 @@ conn.connect(function(err) { // establishes connection
 });
 
 
-
-
-
 // create an instance of express web server
 const app = express();
-app.use(express.static("public"));
+app.use(express.static("public", {index: 'home.html'}));
 
 var http = require("http").createServer(app);
 
 
-
-
-// route for the home page **
+// route for the home page
 app.get("/home", function(req, res) {
     res.sendFile(__dirname + "/public/" + "home.html");
 });
-
-//route for js home
 
 
 // route for the register page
@@ -76,7 +71,6 @@ app.get("/buy", function(req, res) {
 })
 
 // route for the conversation
-
 const io = require('socket.io')(http);
 
 app.get("/conversation", function(req, res) {
@@ -89,9 +83,6 @@ io.on('connection', (socket) => {
     io.emit('chat message', msg);
   });
 });
-
-
-
 
 // tells express to parse JSON data in POST requests
 app.use(express.urlencoded({extended: false}));
@@ -130,13 +121,15 @@ app.post("/attempt_login", function(req, res){
         } else {
             storedPassword = rows[0].password // gets the hashed password that was stored in the SQL database
             if (bcrypt.compareSync(req.body.password, storedPassword)){ // checks the plaintext with the hash using scary math
-                authenticated = true; // set the user to be logged in (currently doesn't actually do anything)
+                authenticated = true; // set the user to be logged in
                 res.json({success: true, message: "Successfully logged in!"});
             } else {
                 res.json({success: false, message:"Wrong password bozo!"});
             }
         }
     });
+
+    //console.log(authenticated);
 });
 
 //api implementation
@@ -159,14 +152,6 @@ app.get('/convert', (req,res) => {
       });
     
 });
-
-//conversation 
-
-
-
-
-    
-  
 
 // starts the express web server
 http.listen(3000, function() {

@@ -14,9 +14,9 @@
           <nav>
               <ul id="navigation">
                   <li><a href="home.html">Home</a></li>
-                  <li><a href="login">Login</a></li>
+                  <li id="logStatus"><a href="login">Login</a></li>
                   <li><a href="register">Sign Up</a></li>
-                  <li><a href="conversation">conversation</a></li>
+                  <li><a href="conversation">Support</a></li>
                   <li><a href="buy">Buy</a></li>
               </ul>
           </nav>
@@ -24,12 +24,14 @@
       <div class="container">
           <div id="title">
               <h1>Apple Stock Today</h1>
-              <div class="search">
-                    <input id="signupButton" type="submit" value="Actualize">
+              
           </div>
-          <div id="stock1">Stock Price at the moment: <span id=stockP1></span></div>
-          <div id="content2">Today's high: <span id=stockP2></span> </div>
-          <div id="content3">Today's low: <span id=stockP3></span></div>
+          <div class="content1" id="stock1">Current Stock Price <span class="price" id=stockP1></span></div>
+          <div class="content2" id="content2">
+            <input id="loadStockButton" type="submit" value="Find Stock Price"> </div>
+          <div class="content3" id="content3">
+            Today's high: <span class="price" id=stockP2></span>
+            Today's low: <span class="price" id=stockP3></span></div>
       </div>
     
   </body>

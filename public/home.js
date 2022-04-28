@@ -1,19 +1,13 @@
-
-
 let data = document.getElementById('stock');
-let searchbutt = document.getElementById("signupButton");
+let searchbutt = document.getElementById("loadStockButton");
 let pass = document.getElementById("search");
 let stock = document.getElementById("stockP1");
 let stock1 = document.getElementById("stockP2");
 let stock2 = document.getElementById("stockP3");
+let logStatusButton = document.getElementById("logStatus");
+var authenticated = false;
 
-
-
-
-
-function signup() {
-    // needed for custom actions
-
+function loadStock() {
     let xhr = new XMLHttpRequest;
     xhr.addEventListener("load", responseHandler);
     let url = '/convert'
@@ -33,10 +27,4 @@ function responseHandler() {
 
 }
 
-searchbutt.addEventListener("click", signup)
-
-
-
-
-
-
+searchbutt.addEventListener("click", loadStock);
