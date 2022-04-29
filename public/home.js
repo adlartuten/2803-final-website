@@ -15,7 +15,6 @@ function loadStock() {
     xhr.responseType = "json";
     xhr.open("GET", url);
     xhr.send();
-
 }
 
 function responseHandler() {
@@ -37,8 +36,6 @@ function checkLogStatus() {
     xhr.open("POST", url);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send();
-
-    console.log("hello");
 }
 
 function resHander() {
