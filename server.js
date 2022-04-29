@@ -28,9 +28,9 @@ create table users(username varchar(64) primary key not null, password varchar(6
 const conn = mysql.createConnection({
     host: "localhost",
     user: "root",
-    //port: "3306",
-    password: "buzzbuzz123",
-    database: "cs2803"
+    port: "3306",
+    password: "Mateo2404",
+    //database: "cs2803"
     
 })
 conn.connect(function(err) { // establishes connection
@@ -138,18 +138,34 @@ app.get('/convert', (req,res) => {
     const options = {
         method: 'GET',
         url: 'https://alpha-vantage.p.rapidapi.com/query',
-        params: {function: 'TIME_SERIES_WEEKLY', symbol: 'AAPL' , datatype: 'json'},
+        params: {
+            interval: '1min',
+            function: 'TIME_SERIES_INTRADAY',
+            symbol: 'AAPL',
+            datatype: 'json',
+            output_size: 'compact'
+        },
         headers: {
           'X-RapidAPI-Host': 'alpha-vantage.p.rapidapi.com',
           'X-RapidAPI-Key': '46696ad4camshc8033d999dc306cp1a477bjsn517c39425609'
         }
       };
-      
+
       axios.request(options).then(function (response) {
-          res.json(response.data['Weekly Time Series']['2022-04-22']);
+        let datas = response.data['Time Series (1min)'];
+        var value = Object.values(datas)[0];
+        res.json(value);
+    }).catch(function (error) {
+        console.error(error);
+    });
+      
+      /*axios.request(options).then(function (response) {
+          var datas = JSON.parse(JSON.stringify(response.data))
+          var ret = datas['Time Series (1min)'][0]
+          res.json(ret);
       }).catch(function (error) {
           console.error(error);
-      });
+      });*/
     
 });
 

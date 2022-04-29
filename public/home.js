@@ -20,10 +20,19 @@ function loadStock() {
 
 function responseHandler() {
     stock.style.display = "block";
+
+    var num = this.response['1. open'];
+    var res = Number(num).toFixed(2);
+
+    var num1 = this.response['2. high'];
+    var res1 = Number(num1).toFixed(2);
+
+    var num2 = this.response['3. low'];
+    var res2 = Number(num2).toFixed(2);
     
-    stock.innerText = '$' + this.response['1. open'];
-    stock1.innerText = '$' + this.response['2. high'];
-    stock2.innerText = '$' + this.response['3. low']; // sets the status text accordingly
+    stock.innerText = '$' + `${res}`;
+    stock1.innerText = '$' + `${res1}`;
+    stock2.innerText = '$' + `${res2}`; // sets the status text accordingly
 
 }
 
