@@ -16,7 +16,7 @@
                   <li><a href="home">Home</a></li>
                   <li id="logStatus"><a href="login">Login</a></li>
                   <li id="registerButton" ><a href="register">Sign Up</a></li>
-                  <li><a href="conversation">Support</a></li>
+                  <li id="chatButton"><a href="conversation">Chat</a></li>
                   <li><a href="buy">Buy</a></li>
               </ul>
           </nav>
@@ -28,7 +28,9 @@
           </div>
           <div class="content1" id="stock1">Current Stock Price <span class="price" id=stockP1></span></div>
           <div class="content2" id="content2">
-            <input id="loadStockButton" type="submit" value="Find Stock Price"> </div>
+            <input id="loadStockButton" type="submit" value="Find Stock Price">
+            <p id="errorText"></p>
+          </div>
           <div class="content3" id="content3">
             Last minute's high: <span class="price" id=stockP2></span>
             Last minute's low: <span class="price" id=stockP3></span></div>

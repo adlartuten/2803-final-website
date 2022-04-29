@@ -6,15 +6,22 @@ let stock1 = document.getElementById("stockP2");
 let stock2 = document.getElementById("stockP3");
 let loginText = document.getElementById("logStatus");
 let registerButton = document.getElementById("registerButton");
+let errorText = document.getElementById("errorText");
+let chatButton = document.getElementById("chatButton");
+let shouldLoad = false;
 
 function loadStock() {
-    let xhr = new XMLHttpRequest;
-    xhr.addEventListener("load", responseHandler);
-    let url = '/convert'
-    
-    xhr.responseType = "json";
-    xhr.open("GET", url);
-    xhr.send();
+    if (shouldLoad) {
+        let xhr = new XMLHttpRequest;
+        xhr.addEventListener("load", responseHandler);
+        let url = '/convert'
+        xhr.responseType = "json";
+        xhr.open("GET", url);
+        xhr.send();
+    } else {
+        errorText.textContent = "Please Log In first";
+    }
+
 }
 
 function responseHandler() {
@@ -51,6 +58,9 @@ function resHander() {
     loginText.innerHTML = `<a href='login'>${this.response.message}</a>`
     if (this.response.message == "Log Out") {
         registerButton.remove();
+        shouldLoad = true;
+    } else if (this.response.message == "Login") {
+        chatButton.remove();
     }
 }
 

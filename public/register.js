@@ -4,6 +4,8 @@ let username = document.getElementById("username");
 let pass = document.getElementById("password");
 let pass2 = document.getElementById("password2");
 let message = document.getElementById("status");
+let loginText = document.getElementById("logStatus");
+let chatButton = document.getElementById("chatButton");
 
 // signup button function
 function signup(event) {
@@ -44,3 +46,23 @@ function responseHandler() {
 
 // add the event listener to sign up button
 signupButton.addEventListener("click", signup);
+
+function checkLogStatus() {
+    let xhr = new XMLHttpRequest;
+    xhr.addEventListener("load", resHander);
+    url = "/logged_in";
+    xhr.responseType = "json";
+    xhr.open("POST", url);
+    console.log("hello");
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send();
+}
+
+function resHander() {
+    loginText.innerHTML = `<a href='login'>${this.response.message}</a>`
+    if (this.response.message == "Login") {
+        chatButton.remove();
+    }
+}
+
+window.addEventListener("load", checkLogStatus);

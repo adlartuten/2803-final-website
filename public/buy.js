@@ -1,6 +1,7 @@
 let buyButt = document.getElementById("buy");
 let loginText = document.getElementById("logStatus");
 let registerButton = document.getElementById("registerButton");
+let chatButton = document.getElementById("chatButton");
 
 function buyStock(event) {
     event.preventDefault();
@@ -24,6 +25,8 @@ function resHander() {
     loginText.innerHTML = `<a href='login'>${this.response.message}</a>`;
     if (this.response.message == "Log Out") {
         registerButton.remove();
+    } else if (this.response.message == "Login") {
+        chatButton.remove();
     }
 }
 

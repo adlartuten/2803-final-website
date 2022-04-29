@@ -3,6 +3,8 @@ let loginButton = document.getElementById("login");
 let username = document.getElementById("username");
 let password = document.getElementById("password");
 let message = document.getElementById("status");
+let loginText = document.getElementById("logStatus");
+let chatButton = document.getElementById("chatButton");
 
 // login button function
 function login(event) {
@@ -30,3 +32,22 @@ function responseHandler() {
 
 // add the event listener to the login button
 loginButton.addEventListener("click", login);
+
+function checkLogStatus() {
+    let xhr = new XMLHttpRequest;
+    xhr.addEventListener("load", resHander);
+    url = "/logged_in";
+    xhr.responseType = "json";
+    xhr.open("POST", url);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send();
+}
+
+function resHander() {
+    loginText.innerHTML = `<a href='login'>${this.response.message}</a>`
+    if (this.response.message == "Login") {
+        chatButton.remove();
+    }
+}
+
+window.addEventListener("load", checkLogStatus);

@@ -1,5 +1,6 @@
 let loginText = document.getElementById("logStatus");
 let registerButton = document.getElementById("registerButton");
+let chatButton = document.getElementById("chatButton");
 
 function checkLogStatus() {
     let xhr = new XMLHttpRequest;

@@ -28,9 +28,8 @@ create table users(username varchar(64) primary key not null, password varchar(6
 const conn = mysql.createConnection({
     host: "localhost",
     user: "root",
-    port: "3306",
-    password: "Mateo2404",
-    //database: "cs2803"
+    password: "buzzbuzz123",
+    database: "cs2803"
     
 })
 conn.connect(function(err) { // establishes connection
