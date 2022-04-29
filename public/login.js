@@ -23,8 +23,8 @@ function responseHandler() {
     message.style.display = "block";
     message.innerText = this.response.message; // sets the status text accordingly
     if (this.response.message == "Successfully logged in!") {
-        authenticated = true;
-        window.location.href = "home.html";
+        loggedIn = true;
+        window.location.href = "home";
     }
 }
 
