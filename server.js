@@ -137,8 +137,6 @@ app.post("/attempt_login", function(req, res){
             }
         }
     });
-
-    //console.log(authenticated);
 });
 
 //api implementation
