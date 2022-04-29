@@ -63,6 +63,7 @@ app.get("/register", function(req, res) {
 // route for the login page
 app.get("/login", function(req, res) {
     res.sendFile(__dirname + "/public/" + "login.html");
+    authenticated = false;
 });
 
 //route for buy page
@@ -76,6 +77,14 @@ const io = require('socket.io')(http);
 app.get("/conversation", function(req, res) {
     res.sendFile(__dirname + "/public/" + "conversation.html");
 });
+
+app.post("/logged_in", function(req, res) {
+    if (authenticated) {
+        res.json({message: "Log Out"});
+    } else {
+        res.json({message: "Login"});
+    }
+})
 
 
 io.on('connection', (socket) => {

@@ -1,51 +1,23 @@
-const socket = io()
-let name;
-let textarea = document.querySelector('#textarea')
-let messageArea = document.querySelector('.message__area')
-do {
-    name = prompt('Please enter your name: ')
-} while(!name)
+let loginText = document.getElementById("logStatus");
+let registerButton = document.getElementById("registerButton");
 
-textarea.addEventListener('keyup', (e) => {
-    if(e.key === 'Enter') {
-        sendMessage(e.target.value)
+function checkLogStatus() {
+    let xhr = new XMLHttpRequest;
+    xhr.addEventListener("load", resHander);
+    url = "/logged_in";
+    xhr.responseType = "json";
+    xhr.open("POST", url);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send();
+
+    console.log("hello");
+}
+
+function resHander() {
+    loginText.innerHTML = `<a href='login'>${this.response.message}</a>`;
+    if (this.response.message == "Log Out") {
+        registerButton.remove();
     }
-})
-
-function sendMessage(message) {
-    let msg = {
-        user: name,
-        message: message.trim()
-    }
-    // Append 
-    appendMessage(msg, 'outgoing')
-    textarea.value = ''
-    scrollToBottom()
-
-    // Send to server 
-    socket.emit('message', msg)
-
 }
 
-function appendMessage(msg, type) {
-    let mainDiv = document.createElement('div')
-    let className = type
-    mainDiv.classList.add(className, 'message')
-
-    let markup = `
-        <h4>${msg.user}</h4>
-        <p>${msg.message}</p>
-    `
-    mainDiv.innerHTML = markup
-    messageArea.appendChild(mainDiv)
-}
-
-// Recieve messages 
-socket.on('message', (msg) => {
-    appendMessage(msg, 'incoming')
-    scrollToBottom()
-})
-
-function scrollToBottom() {
-    messageArea.scrollTop = messageArea.scrollHeight
-}
+window.addEventListener("load", checkLogStatus);

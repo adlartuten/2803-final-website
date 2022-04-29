@@ -4,8 +4,8 @@ let pass = document.getElementById("search");
 let stock = document.getElementById("stockP1");
 let stock1 = document.getElementById("stockP2");
 let stock2 = document.getElementById("stockP3");
-let logStatusButton = document.getElementById("logStatus");
-var authenticated = false;
+let loginText = document.getElementById("logStatus");
+let registerButton = document.getElementById("registerButton");
 
 function loadStock() {
     let xhr = new XMLHttpRequest;
@@ -28,3 +28,27 @@ function responseHandler() {
 }
 
 searchbutt.addEventListener("click", loadStock);
+
+function checkLogStatus() {
+    let xhr = new XMLHttpRequest;
+    xhr.addEventListener("load", resHander);
+    url = "/logged_in";
+    xhr.responseType = "json";
+    xhr.open("POST", url);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send();
+
+    console.log("hello");
+}
+
+function resHander() {
+    loginText.innerHTML = `<a href='login'>${this.response.message}</a>`
+    if (this.response.message == "Log Out") {
+        registerButton.remove();
+    }
+}
+
+window.addEventListener("load", checkLogStatus);
+
+
+
